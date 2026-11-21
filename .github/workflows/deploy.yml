@@ -26,6 +26,7 @@ jobs:
       - name: Build project
         env:
           CI: false
+          NODE_OPTIONS: "--openssl-legacy-provider"
         run: npm run build
 
       - name: Deploy to GitHub Pages
