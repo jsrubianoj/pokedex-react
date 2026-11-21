@@ -65,7 +65,7 @@ export default function App() {
   const onSearch= async(pokemon)=>{
     setLoading(true)
     setNotFound(false)
-    setSearching(true|)
+    setSearching(true)
     const result=await searchPokemon(pokemon)
     if(!result){
       setNotFound(true)
