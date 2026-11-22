@@ -45,8 +45,10 @@ export default function App() {
   },[])
  
   useEffect(() => {
-    if(searching){
-    fetchPokemons();}
+    if (!searching) {
+      fetchPokemons();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const updateFavoritePokemons=(name)=>{
@@ -62,22 +64,29 @@ export default function App() {
       JSON.stringify(updated))
   }
 
-  const onSearch= async(pokemon)=>{
-    setLoading(true)
-    setNotFound(false)
-    setSearching(true)
-    const result=await searchPokemon(pokemon)
-    if(!result){
-      setNotFound(true)
-      return
-    }else{
-      setPokemons([result])
-      setNotFound(false)
-      setPage(0)  
-      setTotal(1)  }
-    setLoading(false)
-    setSearching(false)
-  }
+  const onSearch = async (pokemon) => {
+    if (!pokemon || pokemon.trim() === "") {
+      setSearching(false);
+      setNotFound(false);
+      setPage(0);
+      return fetchPokemons();
+    }
+    setLoading(true);
+    setNotFound(false);
+    setSearching(true);
+    const result = await searchPokemon(pokemon);
+    if (!result) {
+      setNotFound(true);
+      setLoading(false);
+      return;
+    } else {
+      setPokemons([result]);
+      setNotFound(false);
+      setPage(0);
+      setTotal(1);
+    }
+    setLoading(false);
+  };
 
   return (
     <FavoriteProvider 

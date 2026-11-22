@@ -15,10 +15,10 @@ const Pokemon = (props) => {
   }
   return (
     <div className="pokemon-card">
-      <div>
+      <div className="pokemon-img-container">
         <img
           className="pokemon-img"
-          src={pokemon.sprites.front_default}
+          src={pokemon.sprites?.front_default || pokemon.sprites?.other?.["official-artwork"]?.front_default || ""}
           alt={pokemon.name}
         />
       </div>
@@ -29,7 +29,7 @@ const Pokemon = (props) => {
         </div>
         <div className="card-bottom">
           <div className="card-type">
-            {pokemon.types.map((type, idx) => {
+            {pokemon.types?.map((type, idx) => {
               return (
                 <div key={idx} className="pokemon-type-text">
                   {type.type.name}
@@ -37,7 +37,7 @@ const Pokemon = (props) => {
               );
             })}
           </div>
-          <button onClick={clickHeart}>
+          <button className="pokemon-heart-btn" onClick={clickHeart} aria-label="Favorito">
             <div className="pokemon-favorite">{heart}</div>
           </button>
         </div>

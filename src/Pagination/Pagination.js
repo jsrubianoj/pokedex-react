@@ -5,14 +5,14 @@ const Pagination = (props) => {
 
   return (
     <div className="pagination">
-      <button>
-        <div onClick={onLeftClick}>👈</div>
+      <button onClick={onLeftClick} aria-label="Página anterior">
+        <div>👈</div>
       </button>
       <div>
         {page} de {totalPages}
       </div>
-      <button>
-        <div onClick={onRightClick}>👉</div>
+      <button onClick={onRightClick} aria-label="Página siguiente">
+        <div>👉</div>
       </button>
     </div>
   );
